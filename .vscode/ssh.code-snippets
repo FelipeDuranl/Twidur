@@ -1,0 +1,14 @@
+{
+	"Print to console": {
+		"scope": "javascript,typescript",
+		"prefix": "ssh",
+		"body": [
+			"export class GetAllUserService {",
+      "  async execute(){",
+      "     console.log('implementation')",
+      "   }",
+      "}"
+		],
+		"description": "Log output to console"
+	}
+}
