@@ -1,5 +1,5 @@
 import { getRepository } from "typeorm";
-import { User } from "../entities/Users";
+import { User } from "../entities/User";
 
 type UserUpdateRequest = {
   id: string;

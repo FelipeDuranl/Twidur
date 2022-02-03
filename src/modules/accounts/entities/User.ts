@@ -14,7 +14,13 @@ export class User{
   name: string;
 
   @Column()
+  username:string;
+
+  @Column()
   password: string;
+
+  @Column()
+  isAdmin: boolean;
 
   @CreateDateColumn()
   created_at: Date;
