@@ -1,6 +1,6 @@
 import { getRepository } from "typeorm";
 import { Post } from "../entities/Posts";
-import { User } from "../../accounts/entities/User";
+import { User } from "../entities/Users";
 
 type PostRequest = {
   message: string;
