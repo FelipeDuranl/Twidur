@@ -9,7 +9,7 @@ createConnection({
   port: 5432,
   username: "postgres",
   password: "admin",
-  database: "Twidur",
+  database: "teste1",
   entities: [
       Post,
       User

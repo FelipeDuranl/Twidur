@@ -1,7 +1,6 @@
-import { getRepository } from "typeorm"
-import{ hash } from "bcrypt";
-
-import { User } from "../entities/Users"
+import { getRepository } from "typeorm";
+import { User } from "../entities/Users";
+import { hash } from "bcrypt"
 
 //REGISTRATION INFORMATION
 type UserRequest = {
@@ -13,28 +12,22 @@ type UserRequest = {
 
 export class CreateUserService {
   //(CREATE REPOSITORY)
-  async execute({ name, username, email, password }: UserRequest): Promise<User | Error>{
+  async execute({ email, username, name, password }: UserRequest): Promise<User | Error>{
     const repo = getRepository(User);
 
     //SELECT * FROM USERS WHERE EMAIL = "EMAIL" LIMIT 1
-    if(await repo.findOne({ email, username})){
+    if(await repo.findOne({ email })){
       return new Error("User already exists");
     }
 
-    // const userAlreadyExist = await repo.findOne({email, username});
-
-    // if(userAlreadyExist) {
-    //   return new Error("User already exists");
-    // }
-
-    // const passwordHash = await hash(password, 8); 
+    const passwordHash = await hash(password, 8);
 
     //CREATE OBJECT
     const user = repo.create({
       email,
       username,
       name,
-      password,
+      password: passwordHash,
     });
 
     //SAVE

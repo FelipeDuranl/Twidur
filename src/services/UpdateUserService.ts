@@ -3,6 +3,7 @@ import { User } from "../entities/Users";
 
 type UserUpdateRequest = {
   id: string;
+  username: string;
   email: string;
   name: string;
   password: string;
@@ -11,7 +12,7 @@ type UserUpdateRequest = {
 
 
 export class UpdateUserService {
-  async execute({id, email, name, password}: UserUpdateRequest){
+  async execute({id, email, username, name, password}: UserUpdateRequest){
      const repo = getRepository(User);
 
     const user = await repo.findOne(id);
@@ -21,6 +22,7 @@ export class UpdateUserService {
     }
 
     user.email = email ? email : user.email;
+    user.username = username ? username : user.username;
     user.name = name ? name : user.name;
     user.password = password ? password: user.password;
 

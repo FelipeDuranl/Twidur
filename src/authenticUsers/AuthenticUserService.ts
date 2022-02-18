@@ -1,9 +1,9 @@
-
 import { getRepository } from "typeorm";
 import { User } from "../entities/Users";
 
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken"
+import { AppError } from "../error/AppError";
 
 //REGISTRATION INFORMATION
 interface IRequest {
@@ -24,19 +24,19 @@ export class AuthenticateUser {
     const repo = getRepository(User);
 
     //User exist ?
-    const user = await repo.findOne(email);
+    const user = await repo.findOne({email});
 
     if(!user) {
-      throw new Error("Email or password incorrect");
+      throw new AppError("Email or password incorrect", 400);
     }
-    
+
     //Correct password
     const passwordMatch = await compare(password, user.password);
 
     if(!passwordMatch) {
-      throw new Error(password);
+      throw new AppError("Email or password incorrect", 400);
     }
-    
+
     //Generator token
     const token = sign({}, "1558d888249a8b4b5e41606c575c1a6f", {
       subject: user.id,
@@ -51,4 +51,4 @@ export class AuthenticateUser {
 
 
   }
-}
+} 

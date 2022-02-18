@@ -9,11 +9,11 @@ type PostRequest = {
 }
 
 export class CreatePostService {
-  async execute({message, likes, user_id}: PostRequest){
+  async execute({message, likes, user_id}: PostRequest): Promise <Post | Error>{
      const repo = getRepository(Post);
      const repoUser = getRepository(User);
 
-     if(await repoUser.findOne(user_id)) {
+     if(!await repoUser.findOne(user_id)) {
        return new Error("User does not exist!")
        
      }

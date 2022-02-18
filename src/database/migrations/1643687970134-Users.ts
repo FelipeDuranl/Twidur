@@ -13,12 +13,12 @@ export class users1643687970134 implements MigrationInterface {
             isPrimary: true
           },
           {
-            name: "username",
+            name: "email",
             type: "varchar",
             isUnique: true
           },
           {
-            name: "email",
+            name: "username",
             type: "varchar",
             isUnique: true
           },

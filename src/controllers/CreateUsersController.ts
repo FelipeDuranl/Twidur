@@ -7,7 +7,7 @@ export class CreateUserContoller{
   async handle(request: Request, response: Response){
 
     //INFO TO REQUEST BODY
-    const { email,username, name, password } = request.body;
+    const { email, username, name, password } = request.body;
   
     //CALL SERVICE
     const service = new CreateUserService();
